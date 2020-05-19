@@ -1,0 +1,49 @@
+﻿@model RegisterViewModel
+
+<div class="spacing-1"></div>
+<form asp-action="Register" method="post" role="form">
+    <fieldset>
+        <legend class="center">Registro</legend>
+        <label class="sr-only" asp-for="Name">Usuario</label>
+        <div class="input-group">
+            <div class="input-group-addon">
+                <i class="fa fa-user"></i>
+            </div>
+            <input type="text" class="form-control" id="user" asp-for="Name" placeholder="Ingresa tu nombre" />
+        </div>
+        <span asp-validation-for="Name" class="text-danger"></span>
+        <div class="spacing-2"></div>
+        <label class="sr-only" asp-for="Email">Usuario</label>
+        <div class="input-group">
+            <div class="input-group-addon">
+                <i class="fa fa-user"></i>
+            </div>
+            <input type="email" class="form-control" id="user" asp-for="Email" placeholder="Ingresa tu email" />
+        </div>
+        <span asp-validation-for="Email" class="text-danger"></span>
+        <div class="spacing-2"></div>
+        <label class="sr-only" asp-for="Password">Usuario</label>
+        <div class="input-group">
+            <div class="input-group-addon">
+                <i class="fa fa-user"></i>
+            </div>
+            <input type="password" class="form-control" id="user" asp-for="Password" placeholder="Ingresa tu clave" />
+        </div>
+        <span asp-validation-for="Password" class="text-danger"></span>
+        <div class="spacing-2"></div>
+        <label class="sr-only" asp-for="ConfirmPassword">Usuario</label>
+        <div class="input-group">
+            <div class="input-group-addon">
+                <i class="fa fa-user"></i>
+            </div>
+            <input type="password" class="form-control" id="user" asp-for="ConfirmPassword" placeholder="Verificar contraseña" />
+        </div>
+        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+        <div class="row">
+            <div class="col-xs-8 col-xs-offset-2">
+                <div class="spacing-2"></div>
+                <button type="submit" class="btn btn-primary btn-block" id="registro">Registrate</button>
+            </div>
+        </div>
+    </fieldset>
+</form>
