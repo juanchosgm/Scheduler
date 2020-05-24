@@ -9,3 +9,19 @@
 .center {
     text-align: center;
 }
+
+.mt-1 {
+    margin-top: 10%;
+}
+
+.mt-3 {
+    margin-top: 30%;
+}
+
+.mt-5 {
+    margin-top: 50%;
+}
+
+.ml-3 {
+    margin-left: 30%;
+}

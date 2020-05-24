@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Scheduler.Models;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Scheduler.DAL
 {
@@ -11,6 +12,13 @@ namespace Scheduler.DAL
         public AppointmentRepository(SchedulerDbContext context)
         {
             this.context = context;
+        }
+
+        public async Task<Appointment> CreateAppointment(Appointment appointment)
+        {
+            var newAppointment = context.Appointments.Add(appointment);
+            await context.SaveChangesAsync();
+            return newAppointment.Entity;
         }
 
         public IQueryable<Appointment> GetAppointmentsByUser(int userID)

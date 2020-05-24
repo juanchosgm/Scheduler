@@ -29,7 +29,9 @@ namespace Scheduler.Presentation
                 options.UseMySQL(Configuration.GetConnectionString("DefaultConnection"))
             );
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IAppointmentRepository, AppointmentRepository>();
             services.AddScoped<Users>();
+            services.AddScoped<Appointments>();
             services.AddControllersWithViews();
             services.AddRazorPages();
         }

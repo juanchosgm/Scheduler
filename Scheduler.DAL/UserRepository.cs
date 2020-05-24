@@ -14,15 +14,16 @@ namespace Scheduler.DAL
             this.context = context;
         }
 
-        public async Task CreateUser(User user)
+        public async Task<User> CreateUser(User user)
         {
-            context.Users.Add(user);
+            var newUser = context.Users.Add(user);
             await context.SaveChangesAsync();
+            return newUser.Entity;
         }
 
         public async Task<User> GetUserByUsername(string email)
         {
-            var users = await context.Users.AsNoTracking().FirstOrDefaultAsync(u => u.Email == email);
+            var users = await context.Users.FirstOrDefaultAsync(u => u.Email == email);
             return users;
         }
     }

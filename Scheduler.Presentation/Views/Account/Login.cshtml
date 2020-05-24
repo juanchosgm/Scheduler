@@ -1,37 +1,39 @@
 ﻿@model LoginViewModel
-
-<div class="spacing-1"></div>
-<form asp-action="Login" method="post" role="form">
-    <fieldset>
-        <legend class="center">Login</legend>
-        <label class="sr-only" asp-for="UserName">Usuario</label>
-        <div class="input-group">
-            <div class="input-group-addon">
-                <i class="fa fa-user"></i>
+<div class="col-xs-12 col-md-6 col-md-offset-4">
+    <div class="spacing-1"></div>
+    <form asp-action="Login" method="post" role="form">
+        <fieldset>
+            <legend class="center">Login</legend>
+            <label class="sr-only" asp-for="UserName">Usuario</label>
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <i class="fa fa-user"></i>
+                </div>
+                <input type="text" class="form-control" id="user" asp-for="UserName" placeholder="Ingresa tu correo electronico" />
             </div>
-            <input type="text" class="form-control" id="user" asp-for="UserName" placeholder="Ingresa tu correo electronico" />
-        </div>
-        <span asp-validation-for="UserName" class="text-danger"></span>
-        <div class="spacing-2"></div>
-        <label class="sr-only" asp-for="Password">Contraseña</label>
-        <div class="input-group">
-            <div class="input-group-addon">
-                <i class="fa fa-user"></i>
-            </div>
-            <input type="password" autocomplete="off" class="form-control" id="password" asp-for="Password" placeholder="Ingresa tu contraseña" />
-        </div>
-        <span asp-validation-for="Password" class="text-danger"></span>
-        <div class="row">
-            <div class="col-xs-8 col-xs-offset-2">
-                <div class="spacing-2"></div>
-                <button type="submit" class="btn btn-primary btn-block" id="login">Iniciar Sesion</button>
-            </div>
-        </div>
-        <section class="text-accent center">
+            <span asp-validation-for="UserName" class="text-danger"></span>
             <div class="spacing-2"></div>
-            <p>
-                ¿No tienes una cuenta? <a asp-controller="Account" asp-action="Register"> Registrate!</a>
-            </p>
-        </section>
-    </fieldset>
-</form>
+            <label class="sr-only" asp-for="Password">Contraseña</label>
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <i class="fa fa-lock"></i>
+                </div>
+                <input type="password" autocomplete="off" class="form-control" id="password" asp-for="Password" placeholder="Ingresa tu contraseña" />
+            </div>
+            <span asp-validation-for="Password" class="text-danger"></span>
+            <div class="row">
+                <div class="col-xs-8 col-xs-offset-2">
+                    <div class="spacing-2"></div>
+                    <button type="submit" class="btn btn-primary btn-block" id="login">Iniciar Sesion</button>
+                </div>
+            </div>
+            <section class="text-accent center">
+                <div class="spacing-2"></div>
+                <p>
+                    ¿No tienes una cuenta? <a asp-controller="Account" asp-action="Register"> Registrate!</a>
+                </p>
+            </section>
+        </fieldset>
+    </form>
+
+</div>

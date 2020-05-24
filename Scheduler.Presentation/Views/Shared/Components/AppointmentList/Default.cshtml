@@ -1,0 +1,13 @@
+﻿@model IEnumerable<Appointment>
+@foreach (var appointment in Model)
+{
+    <div class="alert alert-info" role="alert">
+        @appointment.Date - @appointment.Description
+        <a class="float-right ml-3">
+            <i class="fas fa-trash-alt"></i>
+        </a>
+        <a class="float-right">
+            <i class="far fa-edit"></i>
+        </a>
+    </div>
+}

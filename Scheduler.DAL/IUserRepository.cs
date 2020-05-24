@@ -9,7 +9,7 @@ namespace Scheduler.DAL
 {
     public interface IUserRepository
     {
-        Task CreateUser(User user);
+        Task<User> CreateUser(User user);
         Task<User> GetUserByUsername(string email);
     }
 }

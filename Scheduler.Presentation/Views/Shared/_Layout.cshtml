@@ -3,15 +3,14 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
     <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
-    <script src="~/lib/jquery/jquery.js"></script>
-    <script src="~/lib/bootstrap/js/bootstrap.js"></script>
+    <link href="~/lib/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
     <link href="~/Content/site.css" rel="stylesheet" />
     @RenderSection("Styles", required: false)
     <style>
         body {
-            background-image: url(@ViewBag.ImageUrl);
+            background-image: url(@(ViewBag.ImageUrl == null ? "/images/fondo.jpg" : ViewBag.ImageUrl));
             background-repeat: no-repeat;
             background-position: 40% 15%;
             background-size: 100%;
@@ -21,11 +20,13 @@
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-xs-12 col-md-4 col-md-offset-4">
-                @RenderBody()
-            </div>
+            @RenderBody()
         </div>
     </div>
+    <script src="~/lib/jquery/jquery.js"></script>
+    <script src="~/lib/moment.js/moment.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.js"></script>
+    <script src="~/lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

@@ -20,7 +20,6 @@ namespace Scheduler.Presentation.Controllers
         public IActionResult Login()
         {
             ViewBag.Title = "Sign In";
-            ViewBag.ImageUrl = "/images/fondo.jpg";
             return View();
         }
 
@@ -28,13 +27,12 @@ namespace Scheduler.Presentation.Controllers
         public async Task<IActionResult> Login(LoginViewModel model)
         {
             ViewBag.Title = "Sign In";
-            ViewBag.ImageUrl = "/images/fondo.jpg";
             if (ModelState.IsValid)
             {
                 var authenticated = await users.Authenticate(model.UserName, model.Password);
                 if (authenticated)
                 {
-                    return View();
+                    return RedirectToAction("Index", "Schedule");
                 }
                 else
                 {
