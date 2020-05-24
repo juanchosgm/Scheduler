@@ -9,7 +9,7 @@ namespace Scheduler.Presentation.ViewModel
     public class ScheduleViewModel
     {
         public string ActionName { get; set; }
-        public string Method { get; set; }
+        public int Id { get; set; }
         public string Action { get; set; }
         public string Controller { get; set; }
         [Required(ErrorMessage = "Obligatorio")]

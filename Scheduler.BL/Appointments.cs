@@ -32,6 +32,47 @@ namespace Scheduler.BL
             await appointmentRepository.CreateAppointment(appointment);
         }
 
+        public async Task DeleteAppointment(int appointmentID)
+        {
+            var appointment = await appointmentRepository.GetAppointmentByID(appointmentID);
+            if (appointment != null)
+            {
+                await appointmentRepository.DeleteAppointment(appointment);
+            }
+            else
+            {
+                throw new Exception("La cita no existe");
+            }
+        }
+
+        public async Task EditAppointment(int appointmentID, Appointment appointment)
+        {
+            var appointmentToEdit = await appointmentRepository.GetAppointmentByID(appointmentID);
+            if (appointmentToEdit != null)
+            {
+                appointmentToEdit.Date = appointment.Date;
+                appointmentToEdit.Description = appointment.Description;
+                await appointmentRepository.EditAppointment(appointmentToEdit);
+            }
+            else
+            {
+                throw new Exception("La cita no exista");
+            }
+        }
+
+        public async Task<Appointment> GetAppointmentByID(int appointmentID)
+        {
+            var appointment = await appointmentRepository.GetAppointmentByID(appointmentID);
+            if (appointment != null)
+            {
+                return appointment;
+            }
+            else
+            {
+                throw new Exception("La cita no exista");
+            }
+        }
+
         public IAsyncEnumerable<Appointment> GetAppointmentUser()
         {
             var appointments = appointmentRepository.GetAppointmentsByUser(1);

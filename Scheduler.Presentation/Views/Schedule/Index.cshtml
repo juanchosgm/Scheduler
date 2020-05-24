@@ -1,20 +1,24 @@
 ﻿@model ScheduleViewModel
-<div class="row mt-1">
+<div class="row mt-5">
     <h2 class="center">@Model.ActionName</h2>
     <div class="spacing-1"></div>
     <div class="col-md-6">
         @await Component.InvokeAsync("AppointmentList")
     </div>
     <div class="col-md-4">
-        <form method="post" asp-action="@Model.Action" asp-controller="@Model.Controller">
+        <form method="post" asp-action="@Model.Action" asp-controller="@Model.Controller" asp-route-appointmentID="@Model.Id">
             <div class="input-group date" id="scheduleDate">
                 <input type="text" class="form-control" asp-for="ScheduleDate" />
                 <span class="input-group-addon">
                     <span class="glyphicon glyphicon-calendar"></span>
                 </span>
             </div>
-            <textarea class="form-control mt-1" asp-for="Description"></textarea>
-            <button type="submit" class="btn btn-primary mt-1">@Model.ButtonTitle</button>
+            <span asp-validation-for="ScheduleDate" class="text-danger"></span>
+            <div class="input-group">
+                <textarea class="form-control mt-3" asp-for="Description"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">@Model.ButtonTitle</button>
         </form>
     </div>
 </div>
