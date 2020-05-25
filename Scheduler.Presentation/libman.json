@@ -13,11 +13,10 @@
     {
       "library": "bootstrap-datetimepicker@4.17.47",
       "destination": "wwwroot/lib/bootstrap-datetimepicker/"
+    },
+    {
+      "library": "moment.js@2.26.0",
+      "destination": "wwwroot/lib/moment.js/"
     }
-  ,
-{
-  "library": "moment.js@2.26.0",
-  "destination": "wwwroot/lib/moment.js/"
-}
-]
+  ]
 }

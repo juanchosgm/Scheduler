@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -16,6 +17,7 @@ namespace Scheduler.Presentation.ViewModel
         public DateTime? ScheduleDate { get; set; }
         [Required(ErrorMessage = "Obligatorio")]
         public string Description { get; set; }
+        public IFormFile File { get; set; }
         public string ButtonTitle { get; set; }
     }
 }

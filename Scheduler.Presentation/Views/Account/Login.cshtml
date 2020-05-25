@@ -1,7 +1,7 @@
 ﻿@model LoginViewModel
 <div class="col-xs-12 col-md-6 col-md-offset-4">
     <div class="spacing-1"></div>
-    <form asp-action="Login" method="post" role="form">
+    <form asp-action="Login" method="post" role="form" asp-antiforgery="true">
         <fieldset>
             <legend class="center">Login</legend>
             <label class="sr-only" asp-for="UserName">Usuario</label>
@@ -35,5 +35,4 @@
             </section>
         </fieldset>
     </form>
-
 </div>

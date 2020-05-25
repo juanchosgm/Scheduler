@@ -3,11 +3,18 @@
 {
     <div class="alert alert-info" role="alert">
         @appointment.Date - @appointment.Description
+
         <a class="float-right ml-3" asp-controller="Schedule" asp-action="DeleteAppoinment" asp-route-appointmentID="@appointment.AppointmentID">
             <i class="fas fa-trash-alt"></i>
         </a>
-        <a class="float-right" asp-controller="Schedule" asp-action="EditAppointment" asp-route-appointmentID="@appointment.AppointmentID">
+        <a class="float-right ml-3" asp-controller="Schedule" asp-action="EditAppointment" asp-route-appointmentID="@appointment.AppointmentID">
             <i class="far fa-edit"></i>
         </a>
+        @if (appointment.File != null)
+        {
+            <a class="float-right" asp-controller="Schedule" asp-action="DownloadFile" asp-route-appointmentID="@appointment.AppointmentID">
+                <i class="fas fa-file-download"></i>
+            </a>
+        }
     </div>
 }

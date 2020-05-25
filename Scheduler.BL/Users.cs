@@ -16,21 +16,16 @@ namespace Scheduler.BL
             this.userRepository = userRepository;
         }
 
-        public async Task<bool> Authenticate(string email, string password)
+        public async Task<User> Authenticate(string email, string password)
         {
             var user = await userRepository.GetUserByUsername(email);
-            if (user != null)
+            if (user != null && passwordHasher.VerifyHashedPassword(user, user.Password, password) == PasswordVerificationResult.Success)
             {
-                return (passwordHasher.VerifyHashedPassword(user, user.Password, password)) switch
-                {
-                    PasswordVerificationResult.Success => true,
-                    PasswordVerificationResult.Failed => false,
-                    _ => false,
-                };
+                return user;
             }
             else
             {
-                return false;
+                throw new Exception("Usuario y/o contraseña incorrectos");
             }
         }
 

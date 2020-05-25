@@ -1,5 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Security.Claims;
+using System.Security.Principal;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Scheduler.BL;
 using Scheduler.Models;
@@ -24,22 +29,24 @@ namespace Scheduler.Presentation.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
             ViewBag.Title = "Sign In";
-            if (ModelState.IsValid)
+            try
             {
-                var authenticated = await users.Authenticate(model.UserName, model.Password);
-                if (authenticated)
+                if (ModelState.IsValid)
                 {
+                    var user = await users.Authenticate(model.UserName, model.Password);
+                    await AssignCredentials(user);
                     return RedirectToAction("Index", "Schedule");
                 }
-                else
-                {
-                    return RedirectToAction("Register");
-                }
+                return View(model);
             }
-            return View(model);
+            catch (Exception)
+            {
+                return RedirectToAction("Login");
+            }
         }
 
         public IActionResult Register()
@@ -74,6 +81,29 @@ namespace Scheduler.Presentation.Controllers
             {
                 return RedirectToAction("Login");
             }
+        }
+
+        private async Task AssignCredentials(User user)
+        {
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Email, user.Email),
+                new Claim(ClaimTypes.Name, user.Username),
+                new Claim(ClaimTypes.Sid, user.UserID.ToString()),
+            };
+            var claimsIdentity = new ClaimsIdentity(
+                claims,
+                CookieAuthenticationDefaults.AuthenticationScheme);
+            await HttpContext.SignInAsync(
+                CookieAuthenticationDefaults.AuthenticationScheme,
+                new ClaimsPrincipal(claimsIdentity));
+
+        }
+
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Login");
         }
     }
 }

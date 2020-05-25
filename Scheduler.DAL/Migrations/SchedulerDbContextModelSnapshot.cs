@@ -32,6 +32,12 @@ namespace Scheduler.DAL.Migrations
                     b.Property<byte[]>("File")
                         .HasColumnType("varbinary(4000)");
 
+                    b.Property<string>("FileDescription")
+                        .HasColumnType("text");
+
+                    b.Property<string>("FileName")
+                        .HasColumnType("text");
+
                     b.Property<int?>("UserID")
                         .HasColumnType("int");
 

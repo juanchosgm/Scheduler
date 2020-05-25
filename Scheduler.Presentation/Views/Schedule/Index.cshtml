@@ -6,7 +6,8 @@
         @await Component.InvokeAsync("AppointmentList")
     </div>
     <div class="col-md-4">
-        <form method="post" asp-action="@Model.Action" asp-controller="@Model.Controller" asp-route-appointmentID="@Model.Id">
+        <form method="post" asp-action="@Model.Action" asp-controller="@Model.Controller" asp-route-appointmentID="@Model.Id"
+              enctype="multipart/form-data">
             <div class="input-group date" id="scheduleDate">
                 <input type="text" class="form-control" asp-for="ScheduleDate" />
                 <span class="input-group-addon">
@@ -18,10 +19,16 @@
                 <textarea class="form-control mt-3" asp-for="Description"></textarea>
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
+            <div class="input-group">
+                <input type="file" class="form-control mt-3" asp-for="File" />
+            </div>
             <button type="submit" class="btn btn-primary mt-3">@Model.ButtonTitle</button>
         </form>
     </div>
 </div>
+<center>
+    <a asp-controller="Account" asp-action="Logout" class="btn btn-primary mt-3">Cerrar Session</a>
+</center>
 @section Scripts{
     <script>
         $(function () {

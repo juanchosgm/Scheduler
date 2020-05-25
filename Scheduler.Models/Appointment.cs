@@ -9,6 +9,8 @@ namespace Scheduler.Models
         public int AppointmentID { get; set; }
         public DateTime Date { get; set; }
         public string Description { get; set; }
+        public string FileName { get; set; }
+        public string FileDescription { get; set; }
         public byte[] File { get; set; }
 
         public virtual User User { get; set; }
