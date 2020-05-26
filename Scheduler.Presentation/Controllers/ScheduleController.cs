@@ -141,7 +141,7 @@ namespace Scheduler.Presentation.Controllers
             try
             {
                 var appointment = await appointments.GetAppointmentByID(appointmentID);
-                return File(appointment.File, appointment.FileDescription);
+                return File(appointment.File, appointment.FileDescription, appointment.FileName);
             }
             catch (Exception)
             {

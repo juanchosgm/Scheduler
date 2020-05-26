@@ -32,7 +32,9 @@
 @section Scripts{
     <script>
         $(function () {
-            $("#scheduleDate").datetimepicker();
+            $("#scheduleDate").datetimepicker({
+                format: 'DD/MM/YYYY hh:mm A'
+            });
         });
     </script>
 }
